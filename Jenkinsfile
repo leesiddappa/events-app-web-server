@@ -7,7 +7,7 @@
 //      web-server-image
 //      may2021dtc405
 //      cluster-1 
-//      [ZONE]
+//      us-central1-c
 //      the following values can be found in the yaml:
 //      demo-ui
 //      demo-ui (in the template/spec section of the deployment)
@@ -66,7 +66,7 @@ pipeline {
          stage('Stage 5') {
             steps {
                 echo 'Get cluster credentials'
-                sh 'gcloud container clusters get-credentials cluster-1 --zone [ZONE] --project may2021dtc405'
+                sh 'gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project may2021dtc405'
                 echo 'Update the image'
                 echo "gcr.io/may2021dtc405/web-server-image:2.${env.BUILD_ID}"
                 sh "kubectl set image deployment/demo-ui demo-ui=gcr.io/may2021dtc405/web-server-image:v2.${env.BUILD_ID} --record"
